@@ -10,9 +10,13 @@ response = ('What cause you do this? Stop swearing, go read your books','Swearin
 
 client = discord.Client()
 
+
 @client.event
 async def on_ready():
+  global admin_user
   print('We have logged in as {0.user}'.format (client))
+  admin_user=await client.fetch_user(888002342388121620)
+  print('Admin is : '+admin_user.name)
 
 @client.event
 async def on_message(message):
@@ -23,6 +27,7 @@ async def on_message(message):
     print (message.author.name+':'+ message.content)
     response_num=random.randint(0,3)
     await message.channel.send(response[response_num])
+    await admin_user.send(message.author.name+' sent this- '+ message.content )
     return  
 
   if message.content.startswith('hey cuss-no-bot'):

@@ -3,10 +3,16 @@ import os
 import discord
 from content_filter import Filter
 from keep_alive import keep_alive
-import random 
+import random
+from replit import db
+
+
 
 filter=Filter()
-response = ('What cause you do this? Stop swearing, go read your books','Swearing is not good so shutup and stop','bla bla bla stop swearing , I can ban u','My creator can see  wht you swore so better not unless u wanna get banned.')
+filter.add_exceptions(['Who r u', 'Who are you','I lost it','st it', 'lost','got','wht', 'This is what I typed'])
+response = ('What cause you do this? Stop swearing, go read your books','Swearing is not good so shutup and stop','bla bla bla stop swearing , I can ban u','My creator can see  wht you swore so better not unless u wanna get banned     https://tenor.com/view/language-rhino-ryan-burton-love-live-serve-dont-curse-gif-18354364')
+
+hello = ('Yo! What up (dont say the sky or ceiling it cheesy) ', 'Hey! I am Cuss-no-bot , A bot from a far away galaxy destined to stop swearing!', 'Hey , Ughh I an tired of doing this but I am cuss-no-bot here to stop swearing')
 
 client = discord.Client()
 
@@ -31,7 +37,8 @@ async def on_message(message):
     return  
 
   if message.content.startswith('hey cuss-no-bot'):
-    await message.channel.send('Yo! What up (dont say the sky or ceiling it cheesy) ')
+    hello_num=random.randint(0,2)
+    await message.channel.send(hello[hello_num])
 
   
 
